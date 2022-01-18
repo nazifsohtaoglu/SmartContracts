@@ -1218,7 +1218,7 @@ abstract contract Ownable is Context {
     }
 }
 
-pragma solidity >=0.7.0 <0.9.0;
+pragma solidity ^0.8.0;
 
 contract IfelseTry is ERC721Enumerable, Ownable {
   using Strings for uint256;
@@ -1230,7 +1230,7 @@ contract IfelseTry is ERC721Enumerable, Ownable {
   uint256 public normalCost = 0.9 ether;
   uint256 public maxSupply = 5555;
   uint256 public maxMintAmount = 5;
-  bool public paused = true;
+  bool public paused = false;
   bool public revealed = false;
   bool inPreSale =true;
  
@@ -1269,11 +1269,11 @@ contract IfelseTry is ERC721Enumerable, Ownable {
     }
   }
   
-  function mintForOwner(uint256 _mintAmount) public onlyOwner payable{
+  function mintForOwner(uint256 _mintAmount) private onlyOwner payable{
     uint256 supply = totalSupply();
     require(!paused);
     require(_mintAmount > 0);
-    require(_mintAmount <= maxMintAmount);
+    require(_mintAmount <= 155);
     require(supply + _mintAmount <= maxSupply);
 
     for (uint256 i = 1; i <= _mintAmount; i++) {
