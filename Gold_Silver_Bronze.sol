@@ -16,6 +16,12 @@ contract IfelseTry is ERC721Enumerable, Ownable {
   uint256 public normalCost = 0.9 ether;
   uint256 public maxSupply = 5555;
   uint256 public maxMintAmount = 5;
+  //0-> Gold   whitelist 30 address 10 maxMint  300 NFT cost 0.77
+  //1->Silver whitelist 30 address  8 maxMint  400 NFT cost 0.77
+  //2->Bronze whitelist 30 address  6 maxMint  600 NFT cost 0.77
+  //3->Presale                      5 maxMint  890 NFT cost 0.99
+  //4->Public sale                  5 maxMint 1680 NFT cost 1.25
+  uint256 public saleMode;
   bool public paused = false;
   bool public revealed = false;
   bool inPreSale =true;
