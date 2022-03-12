@@ -12,15 +12,16 @@ contract IfelseTry is ERC721Enumerable, Ownable {
   string baseURI;
   string public baseExtension = ".json";
   string public notRevealedUri;
-  uint256 public preSaleCost = 0.49 ether;
-  uint256 public normalCost = 0.9 ether;
+  uint256 public whitelistCost = 0.77 ether;
+  uint256 public preSaleCost = 0.99 ether;
+  uint256 public normalCost = 1.25 ether;
   uint256 public maxSupply = 5555;
   uint256 public maxMintAmount = 5;
-  //0-> Gold   whitelist 30 address 10 maxMint  300 NFT cost 0.77
+  //0-> Gold   whitelist 30 address 10 maxMint 300 NFT cost 0.77
   //1->Silver whitelist 30 address  8 maxMint  400 NFT cost 0.77
   //2->Bronze whitelist 30 address  6 maxMint  600 NFT cost 0.77
   //3->Presale                      5 maxMint  890 NFT cost 0.99
-  //4->Public sale                  5 maxMint 1680 NFT cost 1.25
+  //4->Public sale                  5 maxMint 2980 NFT cost 1.25
   uint256 public saleMode;
   bool public paused = false;
   bool public revealed = false;
@@ -52,11 +53,13 @@ contract IfelseTry is ERC721Enumerable, Ownable {
     require(!paused);
     require(_mintAmount > 0);
     require(supply + _mintAmount <= 5400);
-    if(inPreSale){
-       require(msg.value >= preSaleCost * _mintAmount); 
+    if(saleMode < 3){
+       require(msg.value >= whitelistCost * _mintAmount); 
        require(isWhitelisted(msg.sender), "user is not whitelisted");
        
-    }else{
+    }else if(saleMode == 3){
+       require(msg.value >= preSaleCost * _mintAmount);
+    }else if(saleMode == 4){
        require(msg.value >= normalCost * _mintAmount);
     }
     
@@ -65,7 +68,7 @@ contract IfelseTry is ERC721Enumerable, Ownable {
 
     for (uint256 i = 1; i <= _mintAmount; i++) {
         addressMintedBalance[msg.sender]++;
-      _safeMint(msg.sender, supply + i);
+        _safeMint(msg.sender, supply + i);
     }
   }
 
