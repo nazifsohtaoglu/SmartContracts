@@ -67,7 +67,8 @@ contract IfelseTry is ERC721Enumerable, Ownable {
     
     uint256 ownerMintedCount = addressMintedBalance[msg.sender];
     require(ownerMintedCount + _mintAmount <= maxMintAmount, "max NFT per address exceeded");
-    require(ownerMintedCount + _mintAmount <= saleModeMaxCount, "max NFT per address exceeded");
+    require(saleModeCount + _mintAmount <= saleModeMaxCount, "max NFT per sale mode exceeded");
+    
     saleModeCount += _mintAmount;
 
     for (uint256 i = 1; i <= _mintAmount; i++) {
@@ -142,7 +143,13 @@ contract IfelseTry is ERC721Enumerable, Ownable {
       revealed = true;
   }
   
+  function setsaleMode(uint256 _newsaleMode, uint256 _newsaleModeMaxCount) public onlyOwner {
+    saleMode = _newsaleMode;
+    saleModeMaxCount = _newsaleModeMaxCount;
+    saleModeCount = 0;
+  }
 
+  
 
   function setmaxMintAmount(uint256 _newmaxMintAmount) public onlyOwner {
     maxMintAmount = _newmaxMintAmount;
