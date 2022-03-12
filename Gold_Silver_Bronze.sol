@@ -18,11 +18,13 @@ contract IfelseTry is ERC721Enumerable, Ownable {
   uint256 public maxSupply = 5555;
   uint256 public maxMintAmount = 5;
   //0-> Gold   whitelist 30 address 10 maxMint 300 NFT cost 0.77
-  //1->Silver whitelist 30 address  8 maxMint  400 NFT cost 0.77
-  //2->Bronze whitelist 30 address  6 maxMint  600 NFT cost 0.77
+  //1->Silver whitelist 50 address  8 maxMint  400 NFT cost 0.77
+  //2->Bronze whitelist 100 address 6 maxMint  600 NFT cost 0.77
   //3->Presale                      5 maxMint  890 NFT cost 0.99
   //4->Public sale                  5 maxMint 2980 NFT cost 1.25
   uint256 public saleMode;
+  uint256 public saleModeMaxCount;
+  uint256 public saleModeCount;
   bool public paused = false;
   bool public revealed = false;
   bool inPreSale =true;
@@ -65,6 +67,8 @@ contract IfelseTry is ERC721Enumerable, Ownable {
     
     uint256 ownerMintedCount = addressMintedBalance[msg.sender];
     require(ownerMintedCount + _mintAmount <= maxMintAmount, "max NFT per address exceeded");
+    require(ownerMintedCount + _mintAmount <= saleModeMaxCount, "max NFT per address exceeded");
+    saleModeCount += _mintAmount;
 
     for (uint256 i = 1; i <= _mintAmount; i++) {
         addressMintedBalance[msg.sender]++;
