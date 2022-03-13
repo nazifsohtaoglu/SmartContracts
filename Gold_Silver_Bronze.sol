@@ -143,9 +143,10 @@ contract IfelseTry is ERC721Enumerable, Ownable {
       revealed = true;
   }
   
-  function setsaleMode(uint256 _newsaleMode, uint256 _newsaleModeMaxCount) public onlyOwner {
+  function setsaleMode(uint256 _newsaleMode, uint256 _newsaleModeMaxCount, uint256 _newmaxMintAmount) public onlyOwner {
     saleMode = _newsaleMode;
     saleModeMaxCount = _newsaleModeMaxCount;
+    maxMintAmount = _newmaxMintAmount;
     saleModeCount = 0;
   }
 
