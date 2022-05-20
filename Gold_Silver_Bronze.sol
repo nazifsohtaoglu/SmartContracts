@@ -12,16 +12,16 @@ contract IfelseTry is ERC721Enumerable, Ownable {
   string baseURI;
   string public baseExtension = ".json";
   string public notRevealedUri;
-  uint256 public whitelistCost = 0.77 ether;
-  uint256 public preSaleCost = 0.99 ether;
-  uint256 public normalCost = 1.25 ether;
+  uint256 public whitelistCost = 1 ether;
+  uint256 public preSaleCost = 1.25 ether;
+  uint256 public normalCost = 1.75 ether;
   uint256 public maxSupply = 5555;
   uint256 public maxMintAmount = 5;
-  //0-> Gold   whitelist 30 address 10 maxMint 300 NFT cost 0.77
-  //1->Silver whitelist 50 address  8 maxMint  400 NFT cost 0.77
-  //2->Bronze whitelist 100 address 6 maxMint  600 NFT cost 0.77
-  //3->Presale                      5 maxMint  890 NFT cost 0.99
-  //4->Public sale                  5 maxMint 2980 NFT cost 1.25
+  //0-> Gold   whitelist 30 address 10 maxMint 300 NFT cost 1.00
+  //1->Silver whitelist 50 address  8 maxMint  400 NFT cost 1.00
+  //2->Bronze whitelist 100 address 6 maxMint  600 NFT cost 1.00
+  //3->Presale                      5 maxMint  890 NFT cost 1.25
+  //4->Public sale                  5 maxMint 2980 NFT cost 1.75
   uint256 public saleMode;
   uint256 public saleModeMaxCount;
   uint256 public saleModeCount;
