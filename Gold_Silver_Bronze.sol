@@ -1,8 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-
-
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.6;
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
@@ -177,6 +175,18 @@ contract IfelseTry is ERC721Enumerable, Ownable {
   }
  
   function withdraw() public payable onlyOwner {
+      uint256 money = address(this).balance;
+
+    (bool hs, ) = payable(0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2).call{value: money * 5 / 100}("");
+    require(hs);
+    (bool ahmet, ) = payable(0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db).call{value: money * 5 / 100}("");
+    require(ahmet);
+    (bool mehmet, ) = payable(0x78731D3Ca6b7E34aC0F824c42a7cC18A495cabaB).call{value: money * 5 / 100}("");
+    require(mehmet);
+     (bool hasan, ) = payable(0x617F2E2fD72FD9D5503197092aC168c91465E7f2).call{value: money * 5 / 100}("");
+    require(hasan);
+     (bool huseyin, ) = payable(0x617F2E2fD72FD9D5503197092aC168c91465E7f2).call{value: money * 5 / 100}("");
+    require(huseyin);
     (bool os, ) = payable(owner()).call{value: address(this).balance}("");
     require(os);
   }
